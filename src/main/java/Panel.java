@@ -16,4 +16,7 @@ public class Panel extends JPanel {
         solarSystem.paint(g);
     }
 
+    public SolarSystem getSolarSystem() {
+        return solarSystem;
+    }
 }

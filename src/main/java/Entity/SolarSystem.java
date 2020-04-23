@@ -42,4 +42,10 @@ public class SolarSystem {
     public ArrayList<Object> getObjects() {
         return objects;
     }
+
+    public void addObject(Object add) {
+        add.setX(add.getX() + solar.getX() - (UtilConstant.WIDTH >> 1));
+        add.setY(add.getY() + solar.getY() - (UtilConstant.LENGTH >> 1));
+        objects.add(add);
+    }
 }
