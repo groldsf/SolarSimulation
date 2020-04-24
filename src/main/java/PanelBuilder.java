@@ -8,8 +8,6 @@ public class PanelBuilder {
         Panel panel = new Panel();
         panel.addMouseListener(new MouseListener(panel.getSolarSystem()));
         return panel;
+
     }
-
-
-
 }
