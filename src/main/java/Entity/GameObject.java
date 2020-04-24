@@ -7,7 +7,7 @@ import java.util.Random;
 
 import static java.lang.Math.sqrt;
 
-public class Object {
+public class GameObject {
 
     private final Color color;
     private double x;
@@ -18,7 +18,7 @@ public class Object {
     private final SpeedVector  speed;
     private final double weight;
 
-    public void modify(Object target){
+    public void modify(GameObject target){
         double squareLen = (x-target.x)*(x-target.x) + (y-target.y)*(y-target.y);
         double len = sqrt(squareLen);
         if(len <= r+target.r){
@@ -35,7 +35,7 @@ public class Object {
         y+=speed.getY();
     }
 
-    public Object(double x, double y, double r, SpeedVector speed, double weight){
+    public GameObject(double x, double y, double r, SpeedVector speed, double weight){
         this.speed = speed;
         this.weight = weight;
         this.color = new Color(new Random().nextInt());
@@ -44,13 +44,13 @@ public class Object {
         this.r = r;
     }
 
-    public void paint(Graphics g, double mx, double my) {
-        g.setColor(color);
-        g.fillOval((int)(mx + x-r),(int)(my + y-r),(int)(r+r),(int)(r+r));
 
-        g.setColor(Color.RED);
-        double mn = r;
-        g.drawLine((int)(mx + x),(int)(my + y),(int)(mx + speed.getX()*mn+x),(int)(my + speed.getY()*mn+y));
+    public double getR() {
+        return r;
+    }
+
+    public void setR(double r) {
+        this.r = r;
     }
 
     public double getX() {
@@ -69,11 +69,11 @@ public class Object {
         this.y = y;
     }
 
-    public double getR() {
-        return r;
+    public Color getColor() {
+        return color;
     }
 
-    public void setR(double r) {
-        this.r = r;
+    public SpeedVector getSpeed() {
+        return speed;
     }
 }

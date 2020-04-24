@@ -1,7 +1,6 @@
 import Listeners.MouseListener;
 
 import javax.swing.*;
-import java.awt.event.MouseEvent;
 
 public class PanelBuilder {
 

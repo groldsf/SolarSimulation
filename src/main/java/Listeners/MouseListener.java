@@ -1,6 +1,6 @@
 package Listeners;
 
-import Entity.Object;
+import Entity.GameObject;
 import Entity.SolarSystem;
 import Entity.SpeedVector;
 
@@ -44,7 +44,7 @@ public class MouseListener implements java.awt.event.MouseListener {
         long size = (time2-time1)/100;
 
         Random random = new Random();
-        Object add = new Object(x1, y1, size
+        GameObject add = new GameObject(x1, y1, size
                 , new SpeedVector((x2-x1)/20,(y2-y1)/20), random.nextInt(1000)+1);
         System.out.println(size);
         System.out.println(time2-time1);

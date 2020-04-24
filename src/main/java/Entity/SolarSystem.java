@@ -1,27 +1,32 @@
 package Entity;
 
+import UtilClasses.Painter;
 import UtilClasses.UtilConstant;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 
 public class SolarSystem {
 
-    private final ArrayList<Object> objects = new ArrayList<>();
-    private final Object solar;
+    private final Collection<GameObject> gameObjects = new HashSet<>();
+    private final GameObject solar;
+    private final Painter painter;
 
     private SolarSystem(){
-        solar = new Object(500,500,20, new SpeedVector(0,0), 20000);
-        Object earth = new Object(500,400,5, new SpeedVector(10,0), 100);
-        Object mars = new Object(500,200,6, new SpeedVector(6,0), 120);
-        Object pl = new Object(500,100,10, new SpeedVector(5.7,0), 200);
-        Object sp = new Object(500,110,3, new SpeedVector(3,0), 1);
+        solar = new GameObject(500,500,20, new SpeedVector(0,0), 20000);
+        GameObject earth = new GameObject(500,400,5, new SpeedVector(10,0), 100);
+        GameObject mars = new GameObject(500,200,6, new SpeedVector(6,0), 120);
+        GameObject pl = new GameObject(500,100,10, new SpeedVector(5.7,0), 200);
+        GameObject sp = new GameObject(500,110,3, new SpeedVector(3,0), 1);
 
-        objects.add(pl);
-        objects.add(sp);
-        objects.add(earth);
-        objects.add(mars);
-        objects.add(solar);
+        gameObjects.add(pl);
+        gameObjects.add(sp);
+        gameObjects.add(earth);
+        gameObjects.add(mars);
+        gameObjects.add(solar);
+
+        painter = new Painter(solar);
     }
 
     private static final SolarSystem solarSystem = new SolarSystem();
@@ -30,22 +35,19 @@ public class SolarSystem {
     }
 
     public void paint(Graphics g){
-        double x = -solar.getX() + (UtilConstant.WIDTH >> 1);
-        double y = -solar.getY()+ (UtilConstant.LENGTH >> 1);
-//        double x = 0;
-//        double y = 0;
-        for (Object object :objects) {
-            object.paint(g, x, y);
+
+        for (GameObject gameObject : gameObjects) {
+            painter.paint(g,gameObject);
         }
     }
 
-    public ArrayList<Object> getObjects() {
-        return objects;
+    public Collection<GameObject> getGameObjects() {
+        return gameObjects;
     }
 
-    public void addObject(Object add) {
+    public void addObject(GameObject add) {
         add.setX(add.getX() + solar.getX() - (UtilConstant.WIDTH >> 1));
         add.setY(add.getY() + solar.getY() - (UtilConstant.LENGTH >> 1));
-        objects.add(add);
+        gameObjects.add(add);
     }
 }
