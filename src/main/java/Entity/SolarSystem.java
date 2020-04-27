@@ -1,5 +1,6 @@
 package Entity;
 
+import UtilClasses.GlobalParams;
 import UtilClasses.Painter;
 import UtilClasses.UtilConstant;
 
@@ -46,8 +47,18 @@ public class SolarSystem {
     }
 
     public void addObject(GameObject add) {
-        add.setX(add.getX() + solar.getX() - (UtilConstant.WIDTH >> 1));
-        add.setY(add.getY() + solar.getY() - (UtilConstant.LENGTH >> 1));
+        System.out.println(GlobalParams.factor);
+        System.out.println("planet: " + add.getX() + " " + add.getY());
+        System.out.println("solar: " + solar.getX() + " " + solar.getY());
+
+        double x1 = (add.getX() - (UtilConstant.WIDTH>>1)) / GlobalParams.factor + solar.getX();
+        double y1 = (add.getY() - (UtilConstant.LENGTH>>1)) / GlobalParams.factor + solar.getY();
+
+        add.setX(x1);
+        add.setY(y1);
+
+        System.out.println("planet: " + add.getX() + " " + add.getY());
+
         gameObjects.add(add);
     }
 }

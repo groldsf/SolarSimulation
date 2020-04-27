@@ -7,10 +7,10 @@ import Entity.SpeedVector;
 import java.awt.event.MouseEvent;
 import java.util.Random;
 
-public class MouseListener implements java.awt.event.MouseListener {
+public class MouseListenerImpl implements java.awt.event.MouseListener {
     private final SolarSystem solarSystem;
 
-    public MouseListener(SolarSystem solarSystem) {
+    public MouseListenerImpl(SolarSystem solarSystem) {
         this.solarSystem = solarSystem;
     }
 
@@ -42,14 +42,16 @@ public class MouseListener implements java.awt.event.MouseListener {
         time2 = System.currentTimeMillis();
 
         long size = (time2-time1)/100;
+        size = 5;
 
         Random random = new Random();
-        GameObject add = new GameObject(x1, y1, size
-                , new SpeedVector((x2-x1)/20,(y2-y1)/20), random.nextInt(1000)+1);
-        System.out.println(size);
-        System.out.println(time2-time1);
-        System.out.println(time1);
-        System.out.println(time2);
+        GameObject add = new GameObject(
+                x1,
+                y1,
+                size,
+                new SpeedVector((x2-x1)/20,(y2-y1)/20),
+                random.nextInt(1000)+1
+        );
         solarSystem.addObject(add);
     }
 
